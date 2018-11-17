@@ -1,0 +1,21 @@
+body {
+    background-color: lightblue;
+    background-repeat: no-repeat;
+    background-size: 1366px 768px;
+}
+
+h1 {
+    font-style: oblique; 
+    color: whitesmoke;
+    text-align: center
+}
+h2 {
+    font-style: oblique;
+    color: whitesmoke;
+    text-align: center
+}
+div {
+    font-style: oblique;
+    color: whitesmoke;
+    text-align: center
+}

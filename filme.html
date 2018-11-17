@@ -1,0 +1,61 @@
+<head>
+<link rel="stylesheet" type="text/css" href="filme.css">
+</head>
+
+<body background="bg.png">
+    
+<h1>
+    Me indique um filme !
+</h1>
+    
+<h2>
+    Quer assistir um filme e não sabe qual?
+</h2>
+    
+<form action="/Me indique um filme" method="post">
+    <div>
+        <label for="ano">Ano:</label>
+        <input type="number" id="Ano" />
+    </div>
+    
+    <div>
+        <label for="Atores">Atores:</label>
+        <input type="text" id="Atores" />
+    </div>
+    
+    <div>
+        <label for="Categoria">Gategoria:</label>
+            <select name="Categoria">
+            <option value="Ação">Ação</option>
+            <option value="Animação">Animação</option>
+            <option value="Aventura">Aventura</option>
+            <option value="Clássico">Clássico</option>
+            <option value="Comédia">Comédia</option>
+            <option value="Documentário">Documentário</option>
+            <option value="Drama">Drama</option>
+            <option value="Épico">Épico</option>
+            <option value="Faroeste">Faroeste</option>
+            <option value="Ficção">Ficção</option>
+            <option value="Infantil">Infantil</option>
+            <option value="Guerra">Guerra</option>
+            <option value="Musical">Musical</option>
+            <option value="Policial">Policial</option>
+            <option value="Romance">Romance</option>
+            <option value="Suspense">Suspense</option>
+            <option value="Terror">Terror</option>
+            </select> 
+    </div>
+    
+    <div>
+        <label for="Outras">Outras Informações:</label>
+        <input type="text" id="Outroas" />
+    </div> 
+    
+    <div>
+        <form method="get" action="GET https://www.googleapis.com/youtube/v3/search"><button type="submit">Me indique !</button>
+        </form>
+    </div>
+    
+</form>
+    
+</body>
