@@ -12,7 +12,6 @@ $.ajax({ // Puxa html de referência e joga na variável "base".
 function filtra(){ // função principal, filtra filmes ao clicar no botão.
 	$("button").click(function() { //evento engatilhado pelo click no botão.
 		if (indiceFilme>0) { //remove o Filme anterior ao fazer uma nova busca.
-			console.log(indiceFilme);
 			$('#'+indiceFilme).remove();
 		}
 
@@ -22,8 +21,6 @@ function filtra(){ // função principal, filtra filmes ao clicar no botão.
 			filmeAtual = $(base)[i];
 			procura(filmeAtual);	
 		}
-
-		console.log(filmes);
 
 		indiceFilme = Math.floor(Math.random()*(filmes.length-2+1)+0); // gera um número aleatório entre 0 e o número de filmes filtrados -1.
 
@@ -45,29 +42,56 @@ function procura(filme){ // verifica se o filme está dentro dos critérios da b
 	// busca por categoria:
 	$(filme).children('.categories').children().each(function(index) {
 		if ($(this).text() == categoria) { //procura dentro de cada li da lista de categorias pela desejada.
-			filmes.push(filme);
-			return;
+			// busca por atores:
+			if (atores) {
+				$(filme).children('.actors').children().each(function() {
+					if ($(this).text() == atores) { //procura dentro de cada li da lista de atores pelo desejado.
+						if (ano){
+							if ($(filme).children('p').children('span').children('span').text() == ano) {
+								if (outras){
+									if ($(filme).find(".sinopsis:contains('"+outras+"')")) {
+									filmes.push(filme);
+									return;
+									}
+								} else {
+									filmes.push(filme);
+									return;
+								}
+							}
+						} else if (outras){
+							if ($(filme).find(".sinopsis:contains('"+outras+"')")) {
+								filmes.push(filme);
+								return;
+							}
+						} else {
+							filmes.push(filme);
+							return;
+						}
+					}
+				});
+			}
+			// busca por ano:
+			else if (ano) {
+				if ($(filme).children('p').children('span').children('span').text() == ano) {
+						if (outras){
+							if ($(filme).find(".sinopsis:contains('"+outras+"')")) {
+							filmes.push(filme);
+							return;
+							}
+						} else {
+							filmes.push(filme);
+							return;
+						}
+					}
+			} else if (outras){
+				if ($(filme).find(".sinopsis:contains('"+outras+"')")) {
+					filmes.push(filme);
+					return;
+				}
+			} else {
+				filmes.push(filme);
+				return;
+			}
 		}
 	}); 
-
-	// busca por atores:
-	$(filme).children('.actors').children().each(function() {
-		if ($(this).text() == atores) { //procura dentro de cada li da lista de atores pelo desejado.
-			filmes.push(filme);
-			return;
-		}
-	});
-
-	// busca por ano:
-	
-	if (ano && $(filme).children('p').children('span').children('span').text() == ano) {
-		filmes.push(filme);
-		return;
-	}
-
-	//busca por outras:
-	if (outras && $(filme).find(".sinopsis:contains('"+outras+"')")) {
-		filmes.push(filme);
-		return;
-	}
 };
